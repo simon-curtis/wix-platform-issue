@@ -1,0 +1,27 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+    <?include $(sys.CURRENTDIR)\Config.wxi?>
+    <Fragment>
+        <MediaTemplate EmbedCab="yes"/>
+
+        <ComponentGroup Id="InstallerBrand">
+            <ComponentRef Id="CustomRegistries"/>
+        </ComponentGroup>
+
+        <Component Id="CustomRegistries">
+            <RegistryKey Root="HKLM"
+                         Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{[ProductCode]}"
+                         ForceCreateOnInstall="yes">
+                <RegistryValue Type="string"
+                               Name="InstallUser"
+                               Value="[%USERNAME]"
+                               KeyPath="yes"/>
+                <RegistryValue Type="string"
+                               Name="InstallDateTime"
+                               Value="[Date] [Time]"/>
+                <RegistryValue Type="string"
+                               Name="GitHash"
+                               Value="$(var.GitHash)"/>
+            </RegistryKey>
+        </Component>
+    </Fragment>
+</Wix>

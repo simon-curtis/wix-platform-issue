@@ -1,0 +1,34 @@
+﻿<Project Sdk="WixToolset.Sdk/5.0.2">
+  <PropertyGroup>
+    <OutputName>Client</OutputName>
+    <OutputType>Package</OutputType>
+    <InstallerPlatform>x64</InstallerPlatform>
+    <AppProjectDir>$(ProjectDir)</AppProjectDir>
+    <AppPublishDir>bin\$(Configuration)\publish\</AppPublishDir>
+    <DefineConstants>SourceDir=$(AppPublishDir)</DefineConstants>
+    <HarvestDirectoryAutogenerateGuids>false</HarvestDirectoryAutogenerateGuids>
+    <HarvestDirectoryGenerateGuidsNow>true</HarvestDirectoryGenerateGuidsNow>
+    <HarvestDirectorySuppressCom>true</HarvestDirectorySuppressCom>
+    <HarvestDirectorySuppressFragments>true</HarvestDirectorySuppressFragments>
+    <HarvestDirectorySuppressRegistry>true</HarvestDirectorySuppressRegistry>
+    <Platform>x64</Platform>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Heat" Version="5.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Deployment.Common\Deployment.Common.wixproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <HarvestDirectory Include="$(AppPublishDir)">
+      <ComponentGroupName>BuildComponents</ComponentGroupName>
+      <DirectoryRefId>INSTALLFOLDER</DirectoryRefId>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+      <Transforms>..\Resources\heat.xslt</Transforms>
+    </HarvestDirectory>
+    <BindPath Include="$(AppPublishDir)" />
+  </ItemGroup>
+  <Target Name="EnsureRebuild" BeforeTargets="BeforeBuild">
+    <MSBuild Projects="..\Deployment.Common\Deployment.Common.wixproj" Targets="Build" />
+  </Target>
+</Project>

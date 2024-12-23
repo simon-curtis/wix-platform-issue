@@ -1,0 +1,19 @@
+﻿<Project Sdk="WixToolset.Sdk/5.0.2">
+  <PropertyGroup>
+    <OutputName>Deployment.Common</OutputName>
+    <OutputType>Library</OutputType>
+    <BindFiles>true</BindFiles>
+    <Platform>x64</Platform>
+    <AssemblyName>Deployment.Common</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="BuildConfig.ps1" />
+    <None Include="Config.wxi" />
+  </ItemGroup>
+
+  <Target Name="GenerateConfig" BeforeTargets="BeforeBuild">
+    <Exec ConsoleToMsBuild="true" Command="pwsh -NoProfile -NonInteractive -File ./BuildConfig.ps1" />
+  </Target>
+
+</Project>

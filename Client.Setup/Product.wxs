@@ -1,0 +1,27 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <?include $(sys.CURRENTDIR)..\Deployment.Common\Config.wxi?>
+  <?define SolutionNamespace = "Client"?>
+  <?define Name = "Client"?>
+
+  <Package Name="$(var.Name)" Language="1033" Version="$(var.VersionNumber)" Manufacturer="You"
+           UpgradeCode="79eeb969-d22e-45f2-960d-6200b6a1e9c2" ProductCode="79eeb969-d22e-45f2-960d-6200b6a1e9c2">
+    <MajorUpgrade DowngradeErrorMessage="A newer version of $(var.Name) is already installed."/>
+
+    <Feature Id="ProductFeature" Title="$(var.SolutionNamespace).Setup" Level="1">
+      <ComponentGroupRef Id="BuildComponents"/>
+      <ComponentRef Id="ServiceComponent"/>
+      <ComponentGroupRef Id="InstallerBrand"/>
+    </Feature>
+  </Package>
+
+  <Fragment>
+    <Property Id="ROOTDRIVE" Value="D:\"/>
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>
+    <Directory Id="PROGFILESDIR" Name="Program Files">
+      <Directory Id="INSTALLFOLDER" Name="$(var.Name)">
+        <Component Id="ServiceComponent" Guid="c5856ae9-b631-4f74-ab15-def148221fd2" KeyPath="no">
+        </Component>
+      </Directory>
+    </Directory>
+  </Fragment>
+</Wix>
