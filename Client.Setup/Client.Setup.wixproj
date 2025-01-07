@@ -2,16 +2,15 @@
   <PropertyGroup>
     <OutputName>Client</OutputName>
     <OutputType>Package</OutputType>
-    <InstallerPlatform>x64</InstallerPlatform>
     <AppProjectDir>$(ProjectDir)</AppProjectDir>
-    <AppPublishDir>bin\$(Configuration)\publish\</AppPublishDir>
+    <AppPublishDir>..\App Files\</AppPublishDir>
     <DefineConstants>SourceDir=$(AppPublishDir)</DefineConstants>
     <HarvestDirectoryAutogenerateGuids>false</HarvestDirectoryAutogenerateGuids>
     <HarvestDirectoryGenerateGuidsNow>true</HarvestDirectoryGenerateGuidsNow>
     <HarvestDirectorySuppressCom>true</HarvestDirectorySuppressCom>
     <HarvestDirectorySuppressFragments>true</HarvestDirectorySuppressFragments>
     <HarvestDirectorySuppressRegistry>true</HarvestDirectorySuppressRegistry>
-    <Platform>x64</Platform>
+	<Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="WixToolset.Heat" Version="5.0.2" />

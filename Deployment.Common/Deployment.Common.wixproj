@@ -3,8 +3,8 @@
     <OutputName>Deployment.Common</OutputName>
     <OutputType>Library</OutputType>
     <BindFiles>true</BindFiles>
-    <Platform>x64</Platform>
     <AssemblyName>Deployment.Common</AssemblyName>
+	<Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
